@@ -1,0 +1,142 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string input1 = Console.ReadLine();
+            string input2 = Console.ReadLine();
+            Dictionary<string, double> nameMoney = new Dictionary<string, double>();
+            Dictionary<string, double> productPrice = new Dictionary<string, double>();
+            Dictionary<string, List<string>> nameProduct = new Dictionary<string, List<string>>();
+            List<string> names = new List<string>();
+            string name = null;
+            string money = null;
+            double moneyValue = 0;
+            for (int i = 0; i < input1.Length; i++)
+            {
+
+                if (char.IsLetter(input1[i]))
+                {
+                    name += input1[i];
+                }
+                if (input1[i] == '=')
+                {
+                    continue;
+                }
+                if (char.IsDigit(input1[i]))
+                {
+                    money += input1[i];
+                }
+                if (input1[i] == ';')
+                {
+
+                    moneyValue = double.Parse(money);
+                    nameMoney.Add(name, moneyValue);
+                    nameProduct.Add(name, new List<string>());
+                    name = null;
+                    money = null;
+                    moneyValue = 0;
+                }
+                if (i == input1.Length - 1)
+                {
+                    moneyValue = double.Parse(money);
+                    nameMoney.Add(name, moneyValue);
+                    nameProduct.Add(name, new List<string>());
+                    name = null;
+                    money = null;
+                    moneyValue = 0;
+                }
+
+
+            }
+            string product = null;
+            string price = null;
+            double priceValue = 0;
+
+            for (int i = 0; i < input2.Length; i++)
+            {
+
+                if (char.IsLetter(input2[i]))
+                {
+                    product += input2[i];
+                }
+                if (input2[i] == '=')
+                {
+                    continue;
+                }
+                if (char.IsDigit(input2[i]))
+                {
+                    price += input2[i];
+                }
+                if (input2[i] == ';' && i == input2.Length - 1)
+                {
+                    priceValue = double.Parse(price);
+                    productPrice.Add(product, priceValue);
+                    break;
+                }
+                if (input2[i] == ';')
+                {
+                    priceValue = double.Parse(price);
+                    productPrice.Add(product, priceValue);
+                    product = null;
+                    price = null;
+                    priceValue = 0;
+                }
+                if (i == input2.Length - 1)
+                {
+                    priceValue = double.Parse(price);
+                    productPrice.Add(product, priceValue);
+                }
+
+            }
+            string command = Console.ReadLine();
+            while (command != "END")
+            {
+                List<string> coms = command.Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+                string name1 = coms[0];
+                string product1 = coms[1];
+                if (nameMoney.ContainsKey(name1))
+                {
+                    if (productPrice.ContainsKey(product1))
+                    {
+                        if (nameMoney[name1] >= productPrice[product1])
+                        {
+                            nameMoney[name1] -= productPrice[product1];
+                            nameProduct[name1].Add(product1);
+                          
+
+                            Console.WriteLine($"{name1} bought {product1}");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{name1} can't afford {product1}");
+
+                        }
+                    }
+                }
+                command = Console.ReadLine();
+            }
+            foreach(var a in nameProduct)
+            {
+                if (a.Value.Count > 0)
+                {
+                    Console.Write($"{a.Key} - ");
+                    Console.WriteLine(String.Join(", ", a.Value));
+                }
+                else
+                {
+                    Console.WriteLine($"{a.Key} - Nothing bought");
+                }
+            }
+        }
+    }
+}
