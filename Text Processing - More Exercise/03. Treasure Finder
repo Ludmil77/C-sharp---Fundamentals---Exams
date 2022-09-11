@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+
+namespace _03._Treasure_Finder1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> integers = Console.ReadLine().Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+            string command = Console.ReadLine();
+            StringBuilder sb = new StringBuilder();
+            
+            string type = string.Empty;
+            string coordinates = string.Empty;
+            while (command != "find")
+            {
+                
+                sb.Clear();
+                int counter = 0;
+                if (integers.Count <= command.Length)
+                {
+                    for (int i = 0; ;i++)
+                    {
+                        counter++;
+                        if (i == integers.Count)
+                        {
+                            i = 0;
+                        }
+                        if (counter == command.Length + 1)
+                        {
+                            break;
+                        }
+                        sb.Append(integers[i]);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; ; i++)
+                    {
+                        counter++;
+                        if (i == command.Length)
+                        {
+                            i = 0;
+                        }
+                        if (counter == integers.Count + 1)
+                        {
+                            break;
+                        }
+                        sb.Append(integers[i]);
+                    }
+                }
+                char[] chars1 = sb.ToString().ToCharArray();  
+                char[] chars2 = command.ToCharArray();
+                sb.Clear();
+                for (int i = 0; i < chars2.Length; i++)
+                {
+                    chars2[i] -= (char)int.Parse(chars1[i].ToString());
+                    sb.Append(chars2[i]);
+                }
+                int startIndexType = sb.ToString().IndexOf('&') + 1;
+                int endIndexType = sb.ToString().IndexOf('&', startIndexType + 1);
+                int typeLength = endIndexType - startIndexType;
+                type = sb.ToString().Substring(startIndexType, typeLength);
+
+                int startIndexCoordinates = sb.ToString().IndexOf('<') + 1;
+                int endIndexCoordinates = sb.ToString().IndexOf('>');
+                int coordinatesLength = endIndexCoordinates - startIndexCoordinates;
+                coordinates = sb.ToString().Substring(startIndexCoordinates, coordinatesLength);
+                Console.WriteLine($"Found {type} at {coordinates}");
+                command = Console.ReadLine();
+            }
+            
+        }
+    }
+}
