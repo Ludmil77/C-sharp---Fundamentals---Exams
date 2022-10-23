@@ -1,0 +1,43 @@
+using System;
+using System.Linq;
+
+namespace _07._Max_Sequence_of_Equal_Elements
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            int bestSequanceSize = 0;
+            int bestSequanceNumber = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                int currentNumber = numbers[i];
+                int sequenceSize = 1;
+                for (int j = i + 1; j < numbers.Length; j++)
+                {
+                    int rightNumber = numbers[j];
+                    
+                    if (currentNumber == rightNumber)
+                    {
+                        sequenceSize++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (sequenceSize > bestSequanceSize)
+                {
+                    bestSequanceSize = sequenceSize;
+                    bestSequanceNumber = currentNumber;
+                }
+            }
+            for (int i = 0; i < bestSequanceSize; i++)
+            {
+                Console.Write($"{bestSequanceNumber} ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
