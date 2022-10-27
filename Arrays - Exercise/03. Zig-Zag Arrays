@@ -1,0 +1,34 @@
+using System;
+using System.Linq;
+
+namespace _03._Zig_Zag_Arrays
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int value = int.Parse(Console.ReadLine());
+            int[] firstArray = new int[value];
+            int[] secondArray = new int[value];
+
+            for (int i = 0; i < value; i++)
+            {
+                int[] array = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+                if ((i + 1) % 2 == 0)
+                {
+                    secondArray[i] = array[1];
+                    firstArray[i] = array[0];
+                }
+                else
+                {
+                    secondArray[i] = array[0];
+                    firstArray[i] = array[1];
+                }
+            }
+
+            Console.WriteLine(string.Join(" ", secondArray));
+            Console.WriteLine(string.Join(" ", firstArray));
+        }
+    }
+}
