@@ -1,0 +1,27 @@
+using System;
+using System.Linq;
+
+
+namespace _02._Common_Elements
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] arrayFirst = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] arraySecond = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            foreach (string currElement in arraySecond)
+            {
+                for (int i = 0; i < arrayFirst.Length; i++)
+                {
+                    string currValue = arrayFirst[i];
+                    if (currValue == currElement)
+                    {
+                        Console.Write($"{currValue} ");
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
