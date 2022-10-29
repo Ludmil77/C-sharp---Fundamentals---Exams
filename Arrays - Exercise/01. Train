@@ -1,0 +1,27 @@
+using System;
+
+namespace _01._Train
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            int totalNumber = 0;
+            int[] passengers = new int[n];
+            
+            for (int index = 0; index < passengers.Length; index++)
+            {
+                passengers[index] = int.Parse(Console.ReadLine());
+                totalNumber += passengers[index];
+               
+            }
+            for (int i = 0;i < passengers.Length;i++)
+            {
+                Console.Write($"{passengers[i]} ");
+            }
+            Console.WriteLine();
+            Console.WriteLine(totalNumber);
+        }
+    }
+}
