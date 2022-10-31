@@ -1,0 +1,33 @@
+using System;
+
+namespace __Pokemon
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            int m = int.Parse(Console.ReadLine());
+            int y = int.Parse(Console.ReadLine());
+            int substract = 0;
+             double n50 = n * 1.00 / 2.00;
+            
+            int counter = 0;
+            int num = n;
+            while (num >= m)
+            {
+                
+                substract = num - m;
+                num -= m;
+                counter++;
+                if (num == n50 && y > 0)
+                {
+                    num /= y;
+                }
+
+            }
+            Console.WriteLine($"{num}");
+            Console.WriteLine($"{counter}");
+        }
+    }
+}
