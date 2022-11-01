@@ -1,0 +1,31 @@
+using System;
+
+namespace _09._Spice_Must_Flow
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int yield = int.Parse(Console.ReadLine());
+            int counter = 0;
+            double totalLeaving = 0;
+            const int consume = 26;
+            const int min = 100;
+            const int diff = 10;
+            while (yield >= min)
+            {
+                double leaving = yield - consume;
+                yield -= diff;
+                counter++;
+                totalLeaving += leaving;
+                if (yield < min)
+                {
+                    totalLeaving -= consume;
+                }
+            }
+           
+            Console.WriteLine($"{counter}");
+            Console.WriteLine($"{totalLeaving}");
+        }
+    }
+}
