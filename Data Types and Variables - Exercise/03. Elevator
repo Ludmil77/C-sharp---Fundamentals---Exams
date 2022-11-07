@@ -1,0 +1,31 @@
+using System;
+
+namespace _03._Elevator
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+            int p = int.Parse(Console.ReadLine());
+            double course1 = n / p;
+            double course = n % p;
+            if (n <= p)
+            {
+                Console.WriteLine("1");
+            }
+            else
+            {
+                if (n % p == 0)
+                {
+                    Console.WriteLine($"{n/p}");
+                }
+                else
+                {
+                    Console.WriteLine($"{n/p + 1}");
+                }
+            }
+
+        }
+    }
+}
