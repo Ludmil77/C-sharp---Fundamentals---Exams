@@ -1,0 +1,17 @@
+using System;
+
+namespace _01._Integer_Operations
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int firstNumber = int.Parse(Console.ReadLine());
+            int secondNumber = int.Parse(Console.ReadLine());
+            int dividedNumber = int.Parse(Console.ReadLine());
+            int multipliedNumber = int.Parse(Console.ReadLine());
+            int number = ((firstNumber + secondNumber) / dividedNumber) * multipliedNumber;
+            Console.WriteLine($"{number}");
+        }
+    }
+}
