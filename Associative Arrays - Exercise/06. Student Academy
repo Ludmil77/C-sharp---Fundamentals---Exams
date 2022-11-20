@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Linq;
+
+namespace _06._Student_Academy
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var students = new Dictionary<string, List<double>>();
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                string studentName = Console.ReadLine();
+                double studentGrade = double.Parse(Console.ReadLine());
+                if (!students.ContainsKey(studentName))
+                {
+                    students[studentName] = new List<double>();
+                }
+                students[studentName].Add(studentGrade);
+            }
+
+            foreach (var student in students)
+            {
+                string studName = student.Key;
+                double studGradeAverage  = student.Value.Average();
+                if (studGradeAverage >= 4.50)
+                {
+                    Console.WriteLine($"{studName} -> {studGradeAverage:f2}");
+                }
+            }
+        }
+    }
+}
