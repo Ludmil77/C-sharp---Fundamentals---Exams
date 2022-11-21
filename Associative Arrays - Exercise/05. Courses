@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Linq;
+
+namespace _05._Courses
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var courses = new Dictionary<string, List<string>>();
+            
+            string command = Console.ReadLine();
+
+            while (command != "end")
+            {
+                List<string> commandList = command.Split(" : ").ToList();
+                string currentModule = commandList[0];
+                string currentStudent = commandList[1];
+
+                if (!courses.ContainsKey(currentModule))
+                {
+                    courses.Add(currentModule, new List<string>());
+                    courses[currentModule].Add(currentStudent);
+                }
+                else
+                {
+                    courses[currentModule].Add(currentStudent);
+                }
+                command = Console.ReadLine();
+            }
+
+            foreach (var kvp in courses)
+            {
+                string courseName = kvp.Key;
+                var students = kvp.Value;
+
+                Console.WriteLine($"{kvp.Key}: {students.Count}");
+
+                foreach (var student in students)
+                {
+                    Console.WriteLine($"-- {student}");
+                }
+            }
+        }
+    }
+
+}
+    
+
