@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace _03._Orders
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var orders = new Dictionary<string, double>();
+            var orders2 = new Dictionary<string, int>(); 
+            string input = Console.ReadLine();
+            while(input != "buy")
+            {
+                var command = input.Split(' ');
+                string productName = command[0];    
+                double productPrice = double.Parse(command[1]); 
+                int quantity = int.Parse(command[2]);   
+                if (!orders.ContainsKey(productName))
+                {
+                    orders.Add(productName, productPrice);  
+                    orders2.Add(productName, quantity);
+                }
+                else if (orders.ContainsKey(productName))
+                {
+                    orders.Remove(productName);
+                    orders.Add(productName, productPrice);
+                    orders2[productName] += quantity;
+                }
+                input = Console.ReadLine(); 
+            }
+            foreach(var order in orders)
+            {
+                foreach(var order2 in orders2)
+                {
+                    if (order.Key == order2.Key)
+                    {
+                        Console.WriteLine($"{order.Key} -> {order.Value * order2.Value:f2}");
+                    }
+                }
+            }
+        }
+    }
+}
