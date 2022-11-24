@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace _02._A_Miner_Task
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var inputs = new Dictionary<string, int>(); 
+            string resourses = Console.ReadLine();
+            while(resourses != "stop")
+            {
+                int quantity = int.Parse(Console.ReadLine());
+                if (!inputs.ContainsKey(resourses))
+                {
+                    inputs.Add(resourses, 0);
+                }
+                inputs[resourses] += quantity;
+
+                resourses = Console.ReadLine(); 
+            }
+            foreach (var current in inputs)
+            {
+                Console.WriteLine($"{current.Key} -> {current.Value}");
+            }
+        }
+    }
+}
