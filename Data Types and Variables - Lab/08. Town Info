@@ -1,0 +1,15 @@
+using System;
+
+namespace _08._Town_Info
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string town = Console.ReadLine();
+            double n1 = int.Parse(Console.ReadLine());
+            double n2 = int.Parse(Console.ReadLine());
+            Console.WriteLine($"Town {town} has population of {n1} and area {n2} square km.");
+        }
+    }
+}
