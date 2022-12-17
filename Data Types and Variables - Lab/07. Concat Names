@@ -1,0 +1,15 @@
+using System;
+
+namespace _07._Concat_Names
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string n1 = Console.ReadLine();
+            string n2 = Console.ReadLine();
+            string n3 = Console.ReadLine();
+            Console.WriteLine($"{n1}{n3}{n2}");
+        }
+    }
+}
